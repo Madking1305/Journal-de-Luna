@@ -506,6 +506,87 @@
       </a>
     </div>
   </div>
+    /* ===== SCÈNE DE CINÉMA ===== */
+.cinema {
+  position: relative;
+  overflow: hidden;
+}
+
+.cinema-screen {
+  position: relative;
+  padding: 20px;
+  border-radius: 18px;
+  background:
+    radial-gradient(900px 400px at 50% 20%, rgba(255,77,109,.15), transparent 60%),
+    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.film-grain {
+  position: absolute;
+  inset: -40px;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.04) 0 1px,
+      transparent 1px 3px
+    );
+  opacity: .15;
+  pointer-events: none;
+}
+
+.tracklist {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  z-index: 1;
+}
+
+.track-card {
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+.track-title {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.track-mood {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.play-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.06);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.play-btn:hover {
+  background: rgba(255,77,109,.15);
+}
+
+.final-line {
+  position: relative;
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+}
+
 </section>
 
     <!-- HERO -->
@@ -740,37 +821,39 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
       </div>
     </section>
 
-    <!-- JUKEBOX -->
-    <section class="card">
-      <h2>Jukebox</h2>
-      <p class="subtitle">Trois morceaux. Trois humeurs. Trois façons de dire “toi”.</p>
+   <!-- SCÈNE DE CINÉMA -->
+<section class="card cinema">
+  <h2>Bande originale</h2>
+  <p class="subtitle">Trois morceaux. Une histoire. La nôtre.</p>
 
-      <div class="jukebox">
-        <div class="track">
-          <div>
-            <div class="name">Mon autre</div>
-            <div class="meta">Le morceau “évidence”.</div>
-          </div>
-          <a href="#" onclick="alert('Ajoute ici ton lien Spotify/YouTube :)'); return false;">Écouter</a>
-        </div>
+  <div class="cinema-screen">
+    <div class="film-grain"></div>
 
-        <div class="track">
-          <div>
-            <div class="name">I’m Kissing You</div>
-            <div class="meta">Le morceau “cinéma”.</div>
-          </div>
-          <a href="#" onclick="alert('Ajoute ici ton lien Spotify/YouTube :)'); return false;">Écouter</a>
-        </div>
-
-        <div class="track">
-          <div>
-            <div class="name">1000 mesures</div>
-            <div class="meta">Le morceau “peau à peau”.</div>
-          </div>
-          <a href="#" onclick="alert('Ajoute ici ton lien Spotify/YouTube :)'); return false;">Écouter</a>
-        </div>
+    <div class="tracklist">
+      <div class="track-card">
+        <div class="track-title">1000 Mesures</div>
+        <div class="track-mood">Peau à peau. Lent. Intime.</div>
+        <a href="https://youtu.be/HpU8aPbxuUE?si=GWbrN6sJ6btbdXRT" target="_blank" class="play-btn">▶ Écouter</a>
       </div>
-    </section>
+
+      <div class="track-card">
+        <div class="track-title">Je ne sais pas danser</div>
+        <div class="track-mood">Maladroit. Vivant. Vrai.</div>
+        <a href="https://youtu.be/tGVXzEP_etw?si=VxNZm3moTRjpCe6h" target="_blank" class="play-btn">▶ Écouter</a>
+      </div>
+
+      <div class="track-card">
+        <div class="track-title">I’m Kissing You</div>
+        <div class="track-mood">Cinéma pur. Regards. Silences.</div>
+        <a href="https://youtu.be/RMg8fnRG5zI?si=7YilFlzz_6XQBjWZ" target="_blank" class="play-btn">▶ Écouter</a>
+      </div>
+    </div>
+
+    <div class="final-line">
+      <span>🎞️ Fin de la scène.</span><br/>
+      <span>Mais pas de l’histoire.</span>
+    </div>
+  </div>
 
     <div class="fade-out"></div>
 
