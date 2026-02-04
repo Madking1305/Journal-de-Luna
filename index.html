@@ -372,7 +372,45 @@
   .boarding { border:none !important; box-shadow:none !important; }
   .pass { box-shadow:none !important; }
 }
+/* ===== CINEMA MOMENT ===== */
+.cineQuote{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: rgba(5,5,10,.72);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+  padding: 32px;
+  text-align: center;
+}
 
+.cineQuote.show{
+  display: flex;
+  animation: fadeIn .6s ease forwards;
+}
+
+.cineQuote span{
+  font-size: clamp(20px, 4vw, 32px);
+  line-height: 1.5;
+  max-width: 720px;
+  color: #fff;
+  letter-spacing: .3px;
+}
+
+.cineAuthor{
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  opacity: .85;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
     /* Phrases culte */
     .phrases{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:10px}
     .phrases li{
@@ -524,6 +562,7 @@
     <section class="hero">
       <h1>Luna</h1>
       <div class="sub">De quoi que soient faites nos âmes, la sienne et la mienne sont pareilles.</div>
+      <div class="sub">"Refuser d’aimer par peur de souffrir, c’est déjà souffrir par refus de vivre. — Albert Camus"</div>
       <div class="chiprow">
         <div class="chip">13/05/2018</div>
         <div class="chip">13 heures</div>
@@ -824,6 +863,61 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
     heart.addEventListener("click", nextLine);
     again.addEventListener("click", nextLine);
     random.addEventListener("click", randomLine);
-  </script>
+/* ===== CINEMA SECRET ===== */
+const cineQuote = document.getElementById("cineQuote");
+const cineText = document.getElementById("cineText");
+
+const camus = "Refuser d’aimer par peur de souffrir,\n c’est déjà souffrir par refus de vivre.";
+
+let clickCount = 0;
+let clickTimer = null;
+
+// si déjà débloqué → montrer directement
+if(localStorage.getItem("cineUnlocked") === "true"){
+  revealCine(true);
+}
+
+heart.addEventListener("click", () => {
+  clickCount++;
+
+  if(clickCount === 1){
+    clickTimer = setTimeout(() => {
+      clickCount = 0;
+    }, 4000);
+  }
+
+  if(clickCount >= 5){
+    clearTimeout(clickTimer);
+    clickCount = 0;
+    revealCine();
+  }
+});
+
+function revealCine(skipAnim=false){
+  cineQuote.classList.add("show");
+  localStorage.setItem("cineUnlocked","true");
+
+  if(skipAnim){
+    cineText.textContent = camus;
+    return;
+  }
+
+  cineText.textContent = "";
+  let i = 0;
+
+  const type = setInterval(() => {
+    cineText.textContent += camus[i];
+    i++;
+    if(i >= camus.length){
+      clearInterval(type);
+    }
+  }, 45);
+}
+
+// cliquer n'importe où ferme
+cineQuote.addEventListener("click", () => {
+  cineQuote.classList.remove("show");
+});
+ </script>
 </body>
 </html>
