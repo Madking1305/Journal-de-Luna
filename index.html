@@ -466,6 +466,9 @@
       .boarding { border:none !important; box-shadow:none !important; }
       .pass { box-shadow:none !important; }
     }
+    /* Fix clic Jukebox (au cas où un calque recouvre) */
+.jukebox, .track { position: relative; z-index: 5; }
+.track .listen { position: relative; z-index: 6; pointer-events: auto; }
 
   <!-- JUKEBOX -->
 <section class="card">
