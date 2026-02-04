@@ -28,6 +28,16 @@
     }
     .wrap{max-width:920px;margin:0 auto;padding:28px 18px 80px}
 
+    /* ===== CINÉ: arrivée en fondu ===== */
+    .reveal{
+      opacity:0;
+      transform: translateY(10px);
+      animation: pageIn 900ms ease-out forwards;
+    }
+    @keyframes pageIn{
+      to{opacity:1; transform: translateY(0);}
+    }
+
     .hero{
       padding:38px 18px 24px;
       border:1px solid rgba(255,255,255,.06);
@@ -36,6 +46,7 @@
       box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
     h1{margin:0;font-size: clamp(34px, 6vw, 64px);letter-spacing:.5px;line-height:1}
+
     .sub{
       margin-top:14px;
       font-size: clamp(16px, 2.5vw, 20px);
@@ -43,6 +54,24 @@
       min-height: 40px;
       line-height:1.45;
     }
+
+    /* ===== CINÉ: voix-off qui apparaît ===== */
+    .intro-quote{
+      margin-top:10px;
+      color: rgba(242,242,245,.92);
+      font-size: 15px;
+      line-height: 1.55;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: fadeInQuote 1.2s ease-out forwards;
+      animation-delay: 0.6s;
+      border-left: 2px solid rgba(255,255,255,.10);
+      padding-left: 12px;
+    }
+    @keyframes fadeInQuote{
+      to{opacity:1; transform: translateY(0);}
+    }
+
     .chiprow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
     .chip{
       border:1px solid rgba(255,255,255,.10);
@@ -109,6 +138,17 @@
       58%{transform:scale(1.10)}
       78%{transform:scale(1)}
     }
+
+    /* CINÉ: quand on tombe sur LA phrase finale */
+    .heart.final{
+      animation: slowPulse 2s infinite ease-in-out !important;
+      filter: drop-shadow(0 18px 40px rgba(255,77,109,.28));
+    }
+    @keyframes slowPulse{
+      0%,100%{transform:scale(1)}
+      50%{transform:scale(1.05)}
+    }
+
     .pulseHint{color:var(--muted);font-size:13px;text-align:center}
     .quote{
       margin-top:6px;
@@ -135,283 +175,8 @@
       user-select:none;
     }
     .btn:active{transform: translateY(1px);}
-/* ===== Boarding Pass ===== */
-.boarding {
-  position: relative;
-  overflow: hidden;
-}
 
-.pass {
-  position: relative;
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,.10);
-  background:
-    radial-gradient(900px 360px at 12% 10%, rgba(124,77,255,.18), transparent 55%),
-    radial-gradient(700px 320px at 88% 35%, rgba(255,77,109,.15), transparent 55%),
-    linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.16));
-  box-shadow: 0 20px 60px rgba(0,0,0,.35);
-}
-
-.pass::before{
-  /* léger grain + lignes type billet */
-  content:"";
-  position:absolute; inset:-30px;
-  background:
-    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 18px),
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,.06), transparent 40%),
-    radial-gradient(circle at 75% 40%, rgba(255,255,255,.05), transparent 40%);
-  opacity:.55;
-  pointer-events:none;
-  transform: rotate(-1deg);
-}
-
-.passTop {
-  position: relative;
-  padding: 18px 18px 14px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
-}
-
-.passBrand {
-  display:flex;
-  flex-direction:column;
-  gap:4px;
-}
-
-.passBrand .airline {
-  font-weight: 900;
-  letter-spacing: .6px;
-  text-transform: uppercase;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.passBrand .title {
-  font-weight: 900;
-  font-size: 18px;
-}
-
-.passBadges{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.badgeSoft{
-  border:1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.18);
-  color: var(--muted);
-  padding: 8px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
-.passMid {
-  position: relative;
-  padding: 0 18px 16px;
-  display:grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items:center;
-  gap: 12px;
-}
-
-.airport{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.airport .code{
-  font-weight: 1000;
-  letter-spacing: .8px;
-  font-size: 34px;
-  line-height: 1;
-}
-
-.airport .city{
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.routeLine{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap: 6px;
-  min-width: 170px;
-}
-
-.routeLine .dashed{
-  width: 170px;
-  border-top: 2px dashed rgba(255,255,255,.18);
-  position: relative;
-}
-
-.routeLine .plane{
-  font-size: 18px;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
-  animation: planeMove 5.8s infinite ease-in-out;
-}
-
-@keyframes planeMove{
-  0% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
-  50% { transform: translateX(18px) rotate(6deg); opacity:1; }
-  100% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
-}
-
-.routeLine .sub{
-  color: var(--muted);
-  font-size: 12px;
-  text-align:center;
-}
-
-.passTear{
-  position: relative;
-  height: 1px;
-  margin: 0 18px;
-  border-top: 1px dashed rgba(255,255,255,.18);
-}
-
-.passTear::before,
-.passTear::after{
-  content:"";
-  position:absolute;
-  top: -10px;
-  width: 18px; height: 18px;
-  border-radius: 999px;
-  background: var(--bg);
-  border: 1px solid rgba(255,255,255,.10);
-}
-
-.passTear::before{ left: -10px; }
-.passTear::after{ right: -10px; }
-
-.passBottom{
-  position: relative;
-  padding: 14px 18px 18px;
-  display:grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr;
-  gap: 12px;
-}
-
-@media(max-width:860px){
-  .passMid{ grid-template-columns: 1fr; }
-  .routeLine{ min-width: unset; }
-  .routeLine .dashed{ width: 100%; }
-  .passBottom{ grid-template-columns: 1fr 1fr; }
-}
-
-.field{
-  border:1px solid rgba(255,255,255,.08);
-  background: rgba(0,0,0,.18);
-  border-radius: 14px;
-  padding: 10px 12px;
-}
-
-.field .label{
-  color: var(--muted);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: .6px;
-}
-
-.field .value{
-  margin-top: 6px;
-  font-weight: 800;
-  font-size: 14px;
-}
-
-.qrMock{
-  position: relative;
-  border:1px solid rgba(255,255,255,.08);
-  background: rgba(0,0,0,.18);
-  border-radius: 14px;
-  padding: 10px;
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.qrGrid{
-  width: 100%;
-  height: 64px;
-  border-radius: 10px;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 2px, transparent 2px 6px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,.10) 0 2px, transparent 2px 6px);
-  opacity: .55;
-}
-
-.passActions{
-  margin-top: 12px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.smallBtn{
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.04);
-  color: var(--text);
-  padding: 10px 12px;
-  border-radius: 14px;
-  cursor:pointer;
-  font-size: 14px;
-}
-.smallBtn:active{ transform: translateY(1px); }
-
-@media print {
-  body { background: #fff !important; color:#000 !important; }
-  .wrap { max-width: none; padding: 0; }
-  .hero, .grid, .card:not(.boarding) { display:none !important; }
-  .boarding { border:none !important; box-shadow:none !important; }
-  .pass { box-shadow:none !important; }
-}
-/* ===== CINEMA MOMENT ===== */
-.cineQuote{
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: rgba(5,5,10,.72);
-  backdrop-filter: blur(6px);
-  z-index: 9999;
-  padding: 32px;
-  text-align: center;
-}
-
-.cineQuote.show{
-  display: flex;
-  animation: fadeIn .6s ease forwards;
-}
-
-.cineQuote span{
-  font-size: clamp(20px, 4vw, 32px);
-  line-height: 1.5;
-  max-width: 720px;
-  color: #fff;
-  letter-spacing: .3px;
-}
-
-.cineAuthor{
-  margin-top: 18px;
-  color: var(--muted);
-  font-size: 14px;
-  opacity: .85;
-}
-
-@keyframes fadeIn{
-  from{opacity:0}
-  to{opacity:1}
-}
-    /* Phrases culte */
+    /* ===== Phrases culte ===== */
     .phrases{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:10px}
     .phrases li{
       padding:12px 14px;
@@ -422,62 +187,8 @@
       font-style: italic;
       line-height:1.45;
     }
-    .cinema-quote{
-  margin-top:18px;
-  font-size: clamp(18px, 2.6vw, 26px);
-  line-height:1.5;
-  font-weight:500;
-  color:#f5f5f7;
-  text-align:left;
-  max-width:760px;
-  opacity:0;
-  animation: cinemaFade 2.2s ease forwards;
-}
 
-.cinema-quote span{
-  display:block;
-  margin-top:10px;
-  font-size:14px;
-  letter-spacing:.4px;
-  color:var(--muted);
-}
-
-@keyframes cinemaFade{
-  from{
-    opacity:0;
-    transform:translateY(14px);
-    filter:blur(6px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-    filter:blur(0);
-  }
-}
-
-
-    /* Jukebox */
-    .jukebox{display:flex;flex-direction:column;gap:10px;margin-top:12px}
-    .track{
-      display:flex;justify-content:space-between;align-items:center;gap:10px;
-      padding:12px 14px;border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.18);
-    }
-    .track .name{font-weight:700}
-    .track .meta{color:var(--muted);font-size:13px}
-    .track a{
-      color:var(--text);
-      text-decoration:none;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding:8px 10px;border-radius:12px;
-      font-size:13px;
-      white-space:nowrap;
-    }
-    .track a:hover{opacity:.9}
-
-    /* Travel map (carte + avion + arrêts) */
+    /* ===== Travel map (carte + avion + arrêts) ===== */
     .map{
       position:relative;
       overflow:hidden;
@@ -532,7 +243,7 @@
       transform: translateY(-50%);
       border-top:2px dashed rgba(255,255,255,.18);
     }
-    .plane{
+    .planeMap{
       position:absolute;
       top:50%;
       transform: translateY(-50%);
@@ -577,6 +288,226 @@
       flex:0 0 auto;
     }
     .stop p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+
+    /* ===== Boarding Pass (vrai billet) ===== */
+    .boarding { position: relative; overflow: hidden; }
+    .pass{
+      position: relative;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        radial-gradient(900px 360px at 12% 10%, rgba(124,77,255,.18), transparent 55%),
+        radial-gradient(700px 320px at 88% 35%, rgba(255,77,109,.15), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.16));
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    .pass::before{
+      content:"";
+      position:absolute; inset:-30px;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 18px),
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.06), transparent 40%),
+        radial-gradient(circle at 75% 40%, rgba(255,255,255,.05), transparent 40%);
+      opacity:.55;
+      pointer-events:none;
+      transform: rotate(-1deg);
+    }
+    .passTop{
+      position: relative;
+      padding: 18px 18px 14px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .passBrand{display:flex;flex-direction:column;gap:4px;}
+    .passBrand .airline{
+      font-weight: 900;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .passBrand .title{font-weight: 900;font-size: 18px;}
+    .passBadges{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+    .badgeSoft{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .passMid{
+      position: relative;
+      padding: 0 18px 16px;
+      display:grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      gap: 12px;
+    }
+    .airport{display:flex;flex-direction:column;gap:6px;}
+    .airport .code{font-weight: 1000;letter-spacing: .8px;font-size: 34px;line-height: 1;}
+    .airport .city{color: var(--muted);font-size: 13px;}
+    .routeLine{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap: 6px;
+      min-width: 170px;
+    }
+    .routeLine .dashed{
+      width: 170px;
+      border-top: 2px dashed rgba(255,255,255,.18);
+      position: relative;
+    }
+    .routeLine .plane{
+      font-size: 18px;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+      animation: planeMove 5.8s infinite ease-in-out;
+    }
+    @keyframes planeMove{
+      0% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
+      50% { transform: translateX(18px) rotate(6deg); opacity:1; }
+      100% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
+    }
+    .routeLine .subline{color: var(--muted);font-size: 12px;text-align:center;}
+    .passTear{
+      position: relative;
+      height: 1px;
+      margin: 0 18px;
+      border-top: 1px dashed rgba(255,255,255,.18);
+    }
+    .passTear::before,
+    .passTear::after{
+      content:"";
+      position:absolute;
+      top: -10px;
+      width: 18px; height: 18px;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .passTear::before{ left: -10px; }
+    .passTear::after{ right: -10px; }
+
+    .passBottom{
+      position: relative;
+      padding: 14px 18px 18px;
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr;
+      gap: 12px;
+    }
+    @media(max-width:860px){
+      .passMid{ grid-template-columns: 1fr; }
+      .routeLine{ min-width: unset; }
+      .routeLine .dashed{ width: 100%; }
+      .passBottom{ grid-template-columns: 1fr 1fr; }
+    }
+    .field{
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px 12px;
+    }
+    .field .label{
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+    .field .value{
+      margin-top: 6px;
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .qrMock{
+      position: relative;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+      border-radius: 14px;
+      padding: 10px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .qrGrid{
+      width: 100%;
+      height: 64px;
+      border-radius: 10px;
+      background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 2px, transparent 2px 6px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.10) 0 2px, transparent 2px 6px);
+      opacity: .55;
+    }
+    .passActions{
+      margin-top: 12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .smallBtn{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-size: 14px;
+    }
+    .smallBtn:active{ transform: translateY(1px); }
+
+    @media print {
+      body { background: #fff !important; color:#000 !important; }
+      .wrap { max-width: none; padding: 0; }
+      .hero, .grid, .card:not(.boarding) { display:none !important; }
+      .boarding { border:none !important; box-shadow:none !important; }
+      .pass { box-shadow:none !important; }
+    }
+
+   <!-- JUKEBOX -->
+<section class="card">
+  <h2>Jukebox</h2>
+  <p class="subtitle">Trois morceaux. Trois humeurs. Trois façons de dire “toi”.</p>
+
+  <div class="jukebox">
+    <div class="track">
+      <div>
+        <div class="name">1000 Mesures</div>
+        <div class="meta">Le morceau “peau à peau”.</div>
+      </div>
+      <a href="https://youtu.be/HpU8aPbxuUE?si=GWbrN6sJ6btbdXRT"
+         target="_blank" rel="noopener">
+        Écouter
+      </a>
+    </div>
+
+    <div class="track">
+      <div>
+        <div class="name">Je ne sais pas danser</div>
+        <div class="meta">Le morceau “vivant”.</div>
+      </div>
+      <a href="https://youtu.be/tGVXzEP_etw?si=VxNZm3moTRjpCe6h"
+         target="_blank" rel="noopener">
+        Écouter
+      </a>
+    </div>
+
+    <div class="track">
+      <div>
+        <div class="name">I’m Kissing You</div>
+        <div class="meta">Le morceau “cinéma”.</div>
+      </div>
+      <a href="https://youtu.be/RMg8fnRG5zI?si=7YilFlzz_6XQBjWZ"
+         target="_blank" rel="noopener">
+        Écouter
+      </a>
+    </div>
+  </div>
+</section>
+
     .footer{
       margin-top:18px;
       color:var(--muted);
@@ -589,13 +520,17 @@
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="wrap reveal">
 
     <!-- HERO -->
     <section class="hero">
       <h1>Luna</h1>
+
       <div class="sub">De quoi que soient faites nos âmes, la sienne et la mienne sont pareilles.</div>
-      <div class="sub">Refuser d’aimer par peur de souffrir, c’est déjà souffrir par refus de vivre.</div>
+
+      <!-- Voix off (ciné) -->
+      <p class="intro-quote">Refuser d’aimer par peur de souffrir, c’est déjà souffrir par refus de vivre.</p>
+
       <div class="chiprow">
         <div class="chip">13/05/2018</div>
         <div class="chip">13 heures</div>
@@ -693,10 +628,10 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
       <p class="subtitle">Celles qui n’ont de sens que pour nous.</p>
       <ul class="phrases">
         <li>« Viens, on rentre, on dit rien à personne. »</li>
-        <li>« T’as pas faim ? Moi j'ai faim, vient on va manger »</li>
+        <li>« T’as pas faim ? Moi j’ai faim, vient on va manger »</li>
         <li>« Je ne suis pas assez noire pour manger autant de piment. »</li>
-        <li>« Mes tits arrivaient dans la piece avant moi. »</li>
-         <li>« Les psychotes sont plus lourd, c'est scientifique. »</li>
+        <li>« Mes tits arrivaient dans la pièce avant moi. »</li>
+        <li>« Les psychotes sont plus lourd, c'est scientifique. »</li>
       </ul>
     </section>
 
@@ -713,12 +648,13 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
               Avec des escales, du rire, et des dodos sur le canapé.
             </div>
           </div>
-          <div class="badge">✈️ Prochaine étape : nouvelle maison</div>
+          <div class="badge" id="mapBadge">✈️ Prochaine étape : nouvelle maison</div>
         </div>
 
         <div class="planeRow">
           <div class="dotted"></div>
-          <div class="plane">✈️</div>
+          <div class="planeMap">✈️</
+            /div>
         </div>
 
         <div class="stops">
@@ -739,82 +675,84 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
 
           <div class="stop">
             <div class="title"><span class="pin"></span>Petites escales</div>
-            <p>Librairie / Foch / restaurants / soirées ciné.  
+            <p>Librairie / Foch / restaurants / soirées ciné.
             Des petits dates qui font une grande vie.</p>
           </div>
         </div>
       </div>
     </section>
-<section class="card boarding">
-  <h2>Carte d’embarquement</h2>
-  <p class="subtitle">Un billet pour la suite. Sans retour.</p>
 
-  <div class="pass" id="boardingPass">
-    <div class="passTop">
-      <div class="passBrand">
-        <div class="airline">Helios Airlines • Flight of Hearts</div>
-        <div class="title">BOARDING PASS</div>
-      </div>
-      <div class="passBadges">
-        <div class="badgeSoft">VOL 1305</div>
-        <div class="badgeSoft">CLASSE : Nous</div>
-        <div class="badgeSoft">STATUT : Toujours</div>
-      </div>
-    </div>
+    <!-- BOARDING PASS -->
+    <section class="card boarding">
+      <h2>Carte d’embarquement</h2>
+      <p class="subtitle">Un billet pour la suite. Sans retour.</p>
 
-    <div class="passMid">
-      <div class="airport">
-        <div class="code">PAR</div>
-        <div class="city">Paris • Départ</div>
-      </div>
-
-      <div class="routeLine">
-        <div class="plane">✈️</div>
-        <div class="dashed"></div>
-        <div class="sub">Destination : Notre maison</div>
-      </div>
-
-      <div class="airport" style="text-align:right;">
-        <div class="code">NOUS</div>
-        <div class="city">Chez nous • Arrivée</div>
-      </div>
-    </div>
-
-    <div class="passTear"></div>
-
-    <div class="passBottom">
-      <div class="field">
-        <div class="label">Passagère</div>
-        <div class="value">Luna</div>
-      </div>
-
-      <div class="field">
-        <div class="label">Porte</div>
-        <div class="value">TOI</div>
-      </div>
-
-      <div class="field">
-        <div class="label">Siège</div>
-        <div class="value">CÔTÉ CŒUR</div>
-      </div>
-
-      <div class="qrMock">
-        <div class="label" style="color:var(--muted); font-size:11px; letter-spacing:.6px; text-transform:uppercase;">
-          Scan (symbolique)
+      <div class="pass" id="boardingPass">
+        <div class="passTop">
+          <div class="passBrand">
+            <div class="airline">Helios Airlines • Flight of Hearts</div>
+            <div class="title">BOARDING PASS</div>
+          </div>
+          <div class="passBadges">
+            <div class="badgeSoft">VOL 1305</div>
+            <div class="badgeSoft">CLASSE : Nous</div>
+            <div class="badgeSoft">STATUT : Toujours</div>
+          </div>
         </div>
-        <div class="qrGrid"></div>
-        <div style="color:var(--muted); font-size:12px;">
-          “Grandir à tes côtés.”
+
+        <div class="passMid">
+          <div class="airport">
+            <div class="code">PAR</div>
+            <div class="city">Paris • Départ</div>
+          </div>
+
+          <div class="routeLine">
+            <div class="plane">✈️</div>
+            <div class="dashed"></div>
+            <div class="subline" id="destinationLine">Destination : Notre maison</div>
+          </div>
+
+          <div class="airport" style="text-align:right;">
+            <div class="code">NOUS</div>
+            <div class="city">Chez nous • Arrivée</div>
+          </div>
+        </div>
+
+        <div class="passTear"></div>
+
+        <div class="passBottom">
+          <div class="field">
+            <div class="label">Passagère</div>
+            <div class="value">Luna</div>
+          </div>
+
+          <div class="field">
+            <div class="label">Porte</div>
+            <div class="value">TOI</div>
+          </div>
+
+          <div class="field">
+            <div class="label">Siège</div>
+            <div class="value">CÔTÉ CŒUR</div>
+          </div>
+
+          <div class="qrMock">
+            <div class="label" style="color:var(--muted); font-size:11px; letter-spacing:.6px; text-transform:uppercase;">
+              Scan (symbolique)
+            </div>
+            <div class="qrGrid"></div>
+            <div style="color:var(--muted); font-size:12px;">
+              “Grandir à tes côtés.”
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="passActions">
-    <button class="smallBtn" onclick="window.print()">Imprimer le billet</button>
-    <button class="smallBtn" onclick="setNextStop()">Prochaine étape</button>
-  </div>
-</section>
+      <div class="passActions">
+        <button class="smallBtn" onclick="window.print()">Imprimer le billet</button>
+        <button class="smallBtn" onclick="setNextStop()">Prochaine étape</button>
+      </div>
+    </section>
 
     <!-- JUKEBOX -->
     <section class="card">
@@ -848,6 +786,8 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
       </div>
     </section>
 
+    <div class="fade-out"></div>
+
     <div class="footer">
       Grandir à tes côtés est la plus belle aventure que la vie puisse offrir.
     </div>
@@ -855,6 +795,7 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
   </div>
 
   <script>
+    // ====== Bouton à tendresse ======
     const compliments = [
       "Tu as une voix qui apaise sans effort.",
       "Tu as un sourire qui dit toujours la vérité.",
@@ -865,7 +806,9 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
       "Tu as cette façon de faire semblant de râler que je reconnaîtrais entre mille.",
       "Avec toi, le silence ne fait pas peur.",
       "Et quand on rit… on rit jusqu’à en avoir mal aux joues.",
-      "Bonne Saint-Valentin, Luna."
+      "Bonne Saint-Valentin, Luna.",
+      // CINÉ (final moment)
+      "Je me sens chez moi quand tu es là."
     ];
 
     const quote = document.getElementById("quote");
@@ -877,9 +820,17 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
 
     function showLine(text){
       quote.textContent = text;
+
+      // si c’est la phrase "finale", le coeur passe en slowPulse
+      if (text.includes("chez moi")) {
+        heart.classList.add("final");
+      } else {
+        heart.classList.remove("final");
+      }
+
       quote.animate(
-        [{transform:"translateY(2px)", opacity:0.85},{transform:"translateY(0)", opacity:1}],
-        {duration:220, easing:"ease-out"}
+        [{transform:"translateY(2px)", opacity:0.78},{transform:"translateY(0)", opacity:1}],
+        {duration:260, easing:"ease-out"}
       );
     }
     showLine(compliments[0]);
@@ -896,61 +847,40 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
     heart.addEventListener("click", nextLine);
     again.addEventListener("click", nextLine);
     random.addEventListener("click", randomLine);
-/* ===== CINEMA SECRET ===== */
-const cineQuote = document.getElementById("cineQuote");
-const cineText = document.getElementById("cineText");
 
-const camus = "Refuser d’aimer par peur de souffrir,\n c’est déjà souffrir par refus de vivre.";
+    // ====== Prochaine étape (carte + billet) ======
+    const steps = [
+      "Nouvelle maison",
+      "PACS",
+      "Une petite sœur pour Snow",
+      "Petites escales",
+      "Toujours nous"
+    ];
 
-let clickCount = 0;
-let clickTimer = null;
+    let stepIndex = 0;
 
-// si déjà débloqué → montrer directement
-if(localStorage.getItem("cineUnlocked") === "true"){
-  revealCine(true);
-}
+    function setNextStop(){
+      stepIndex = (stepIndex + 1) % steps.length;
 
-heart.addEventListener("click", () => {
-  clickCount++;
+      const dest = steps[stepIndex];
+      const destinationLine = document.getElementById("destinationLine");
+      const mapBadge = document.getElementById("mapBadge");
 
-  if(clickCount === 1){
-    clickTimer = setTimeout(() => {
-      clickCount = 0;
-    }, 4000);
-  }
+      // Billet
+      destinationLine.textContent = "Destination : " + (dest === "Toujours nous" ? "NOUS" : dest);
 
-  if(clickCount >= 5){
-    clearTimeout(clickTimer);
-    clickCount = 0;
-    revealCine();
-  }
-});
+      // Carte
+      mapBadge.textContent = "✈️ Prochaine étape : " + dest;
 
-function revealCine(skipAnim=false){
-  cineQuote.classList.add("show");
-  localStorage.setItem("cineUnlocked","true");
-
-  if(skipAnim){
-    cineText.textContent = camus;
-    return;
-  }
-
-  cineText.textContent = "";
-  let i = 0;
-
-  const type = setInterval(() => {
-    cineText.textContent += camus[i];
-    i++;
-    if(i >= camus.length){
-      clearInterval(type);
+      // petit effet ciné sur le badge
+      mapBadge.animate(
+        [{transform:"translateY(2px)", opacity:0.75},{transform:"translateY(0)", opacity:1}],
+        {duration:240, easing:"ease-out"}
+      );
     }
-  }, 45);
-}
 
-// cliquer n'importe où ferme
-cineQuote.addEventListener("click", () => {
-  cineQuote.classList.remove("show");
-});
- </script>
+    // rendre la fonction accessible au onclick
+    window.setNextStop = setNextStop;
+  </script>
 </body>
 </html>
