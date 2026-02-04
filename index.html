@@ -135,6 +135,243 @@
       user-select:none;
     }
     .btn:active{transform: translateY(1px);}
+/* ===== Boarding Pass ===== */
+.boarding {
+  position: relative;
+  overflow: hidden;
+}
+
+.pass {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.10);
+  background:
+    radial-gradient(900px 360px at 12% 10%, rgba(124,77,255,.18), transparent 55%),
+    radial-gradient(700px 320px at 88% 35%, rgba(255,77,109,.15), transparent 55%),
+    linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.16));
+  box-shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+.pass::before{
+  /* léger grain + lignes type billet */
+  content:"";
+  position:absolute; inset:-30px;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 18px),
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.06), transparent 40%),
+    radial-gradient(circle at 75% 40%, rgba(255,255,255,.05), transparent 40%);
+  opacity:.55;
+  pointer-events:none;
+  transform: rotate(-1deg);
+}
+
+.passTop {
+  position: relative;
+  padding: 18px 18px 14px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.passBrand {
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+}
+
+.passBrand .airline {
+  font-weight: 900;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.passBrand .title {
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.passBadges{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.badgeSoft{
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(0,0,0,.18);
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.passMid {
+  position: relative;
+  padding: 0 18px 16px;
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items:center;
+  gap: 12px;
+}
+
+.airport{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.airport .code{
+  font-weight: 1000;
+  letter-spacing: .8px;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.airport .city{
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.routeLine{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 6px;
+  min-width: 170px;
+}
+
+.routeLine .dashed{
+  width: 170px;
+  border-top: 2px dashed rgba(255,255,255,.18);
+  position: relative;
+}
+
+.routeLine .plane{
+  font-size: 18px;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+  animation: planeMove 5.8s infinite ease-in-out;
+}
+
+@keyframes planeMove{
+  0% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
+  50% { transform: translateX(18px) rotate(6deg); opacity:1; }
+  100% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
+}
+
+.routeLine .sub{
+  color: var(--muted);
+  font-size: 12px;
+  text-align:center;
+}
+
+.passTear{
+  position: relative;
+  height: 1px;
+  margin: 0 18px;
+  border-top: 1px dashed rgba(255,255,255,.18);
+}
+
+.passTear::before,
+.passTear::after{
+  content:"";
+  position:absolute;
+  top: -10px;
+  width: 18px; height: 18px;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+.passTear::before{ left: -10px; }
+.passTear::after{ right: -10px; }
+
+.passBottom{
+  position: relative;
+  padding: 14px 18px 18px;
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+@media(max-width:860px){
+  .passMid{ grid-template-columns: 1fr; }
+  .routeLine{ min-width: unset; }
+  .routeLine .dashed{ width: 100%; }
+  .passBottom{ grid-template-columns: 1fr 1fr; }
+}
+
+.field{
+  border:1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.field .label{
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+.field .value{
+  margin-top: 6px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.qrMock{
+  position: relative;
+  border:1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+  border-radius: 14px;
+  padding: 10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.qrGrid{
+  width: 100%;
+  height: 64px;
+  border-radius: 10px;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 2px, transparent 2px 6px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,.10) 0 2px, transparent 2px 6px);
+  opacity: .55;
+}
+
+.passActions{
+  margin-top: 12px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.smallBtn{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: var(--text);
+  padding: 10px 12px;
+  border-radius: 14px;
+  cursor:pointer;
+  font-size: 14px;
+}
+.smallBtn:active{ transform: translateY(1px); }
+
+@media print {
+  body { background: #fff !important; color:#000 !important; }
+  .wrap { max-width: none; padding: 0; }
+  .hero, .grid, .card:not(.boarding) { display:none !important; }
+  .boarding { border:none !important; box-shadow:none !important; }
+  .pass { box-shadow:none !important; }
+}
 
     /* Phrases culte */
     .phrases{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:10px}
@@ -436,6 +673,76 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
         </div>
       </div>
     </section>
+<section class="card boarding">
+  <h2>Carte d’embarquement</h2>
+  <p class="subtitle">Un billet pour la suite. Sans retour.</p>
+
+  <div class="pass" id="boardingPass">
+    <div class="passTop">
+      <div class="passBrand">
+        <div class="airline">Helios Airlines • Flight of Hearts</div>
+        <div class="title">BOARDING PASS</div>
+      </div>
+      <div class="passBadges">
+        <div class="badgeSoft">VOL 1305</div>
+        <div class="badgeSoft">CLASSE : Nous</div>
+        <div class="badgeSoft">STATUT : Toujours</div>
+      </div>
+    </div>
+
+    <div class="passMid">
+      <div class="airport">
+        <div class="code">PAR</div>
+        <div class="city">Paris • Départ</div>
+      </div>
+
+      <div class="routeLine">
+        <div class="plane">✈️</div>
+        <div class="dashed"></div>
+        <div class="sub">Destination : Notre maison</div>
+      </div>
+
+      <div class="airport" style="text-align:right;">
+        <div class="code">NOUS</div>
+        <div class="city">Chez nous • Arrivée</div>
+      </div>
+    </div>
+
+    <div class="passTear"></div>
+
+    <div class="passBottom">
+      <div class="field">
+        <div class="label">Passagère</div>
+        <div class="value">Luna</div>
+      </div>
+
+      <div class="field">
+        <div class="label">Porte</div>
+        <div class="value">TOI</div>
+      </div>
+
+      <div class="field">
+        <div class="label">Siège</div>
+        <div class="value">CÔTÉ CŒUR</div>
+      </div>
+
+      <div class="qrMock">
+        <div class="label" style="color:var(--muted); font-size:11px; letter-spacing:.6px; text-transform:uppercase;">
+          Scan (symbolique)
+        </div>
+        <div class="qrGrid"></div>
+        <div style="color:var(--muted); font-size:12px;">
+          “Grandir à tes côtés.”
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="passActions">
+    <button class="smallBtn" onclick="window.print()">Imprimer le billet</button>
+    <button class="smallBtn" onclick="setNextStop()">Prochaine étape</button>
+  </div>
+</section>
 
     <!-- JUKEBOX -->
     <section class="card">
