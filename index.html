@@ -28,15 +28,13 @@
     }
     .wrap{max-width:920px;margin:0 auto;padding:28px 18px 80px}
 
-    /* ===== CINÉ: arrivée en fondu ===== */
+    /* petit reveal propre */
     .reveal{
       opacity:0;
-      transform: translateY(10px);
-      animation: pageIn 900ms ease-out forwards;
+      transform:translateY(10px);
+      animation: pageIn .9s ease-out forwards;
     }
-    @keyframes pageIn{
-      to{opacity:1; transform: translateY(0);}
-    }
+    @keyframes pageIn{to{opacity:1;transform:translateY(0)}}
 
     .hero{
       padding:38px 18px 24px;
@@ -45,17 +43,16 @@
       border-radius:22px;
       box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
-    h1{margin:0;font-size: clamp(34px, 6vw, 64px);letter-spacing:.5px;line-height:1}
-
+    h1{margin:0;font-size:clamp(34px,6vw,64px);letter-spacing:.5px;line-height:1}
     .sub{
       margin-top:14px;
-      font-size: clamp(16px, 2.5vw, 20px);
+      font-size:clamp(16px,2.5vw,20px);
       color:var(--muted);
-      min-height: 40px;
+      min-height:40px;
       line-height:1.45;
     }
 
-    /* ===== CINÉ: voix-off qui apparaît ===== */
+    /* voix-off Camus */
     .intro-quote{
       margin-top:10px;
       color: rgba(242,242,245,.92);
@@ -64,13 +61,12 @@
       opacity: 0;
       transform: translateY(6px);
       animation: fadeInQuote 1.2s ease-out forwards;
-      animation-delay: 0.6s;
+      animation-delay: .6s;
       border-left: 2px solid rgba(255,255,255,.10);
       padding-left: 12px;
+      max-width: 780px;
     }
-    @keyframes fadeInQuote{
-      to{opacity:1; transform: translateY(0);}
-    }
+    @keyframes fadeInQuote{to{opacity:1;transform:translateY(0)}}
 
     .chiprow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
     .chip{
@@ -113,13 +109,14 @@
     .step .t{font-weight:700}
     .step .d{color:var(--muted);margin-top:4px;font-size:14px;line-height:1.45;white-space:pre-line}
 
-    /* Heart (poum poum + rose/violet) */
+    /* Heart (poum poum) */
     .heartWrap{display:flex;flex-direction:column;align-items:center;gap:10px}
     .heartHalo{
       width:164px;height:164px;border-radius:50%;
       display:grid;place-items:center;
-      background: radial-gradient(circle at 50% 45%, rgba(255,77,109,.18), transparent 55%),
-                  radial-gradient(circle at 40% 60%, rgba(124,77,255,.14), transparent 60%);
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255,77,109,.18), transparent 55%),
+        radial-gradient(circle at 40% 60%, rgba(124,77,255,.14), transparent 60%);
       border:1px solid rgba(255,255,255,.08);
       box-shadow: 0 18px 45px rgba(0,0,0,.35);
     }
@@ -138,8 +135,7 @@
       58%{transform:scale(1.10)}
       78%{transform:scale(1)}
     }
-
-    /* CINÉ: quand on tombe sur LA phrase finale */
+    /* final moment */
     .heart.final{
       animation: slowPulse 2s infinite ease-in-out !important;
       filter: drop-shadow(0 18px 40px rgba(255,77,109,.28));
@@ -176,7 +172,7 @@
     }
     .btn:active{transform: translateY(1px);}
 
-    /* ===== Phrases culte ===== */
+    /* Phrases culte */
     .phrases{list-style:none;padding:0;margin:14px 0 0;display:flex;flex-direction:column;gap:10px}
     .phrases li{
       padding:12px 14px;
@@ -188,7 +184,7 @@
       line-height:1.45;
     }
 
-    /* ===== Travel map (carte + avion + arrêts) ===== */
+    /* Travel map (carte + avion + arrêts) */
     .map{
       position:relative;
       overflow:hidden;
@@ -231,41 +227,27 @@
       font-size:12px;
       white-space:nowrap;
     }
-
-    .planeRow{
-      position:relative;
-      margin:12px 0 12px;
-      height:46px;
-    }
+    .planeRow{position:relative;margin:12px 0 12px;height:46px}
     .dotted{
-      position:absolute;
-      left:0; right:0; top:50%;
-      transform: translateY(-50%);
+      position:absolute;left:0;right:0;top:50%;
+      transform:translateY(-50%);
       border-top:2px dashed rgba(255,255,255,.18);
     }
     .planeMap{
-      position:absolute;
-      top:50%;
-      transform: translateY(-50%);
-      left: 6%;
+      position:absolute;top:50%;
+      transform:translateY(-50%);
+      left:6%;
       font-size:22px;
       filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));
       animation: fly 6.5s infinite ease-in-out;
     }
     @keyframes fly{
-      0%{left:6%; transform: translateY(-50%) rotate(-6deg)}
-      50%{left:78%; transform: translateY(-65%) rotate(6deg)}
-      100%{left:6%; transform: translateY(-50%) rotate(-6deg)}
+      0%{left:6%;transform:translateY(-50%) rotate(-6deg)}
+      50%{left:78%;transform:translateY(-65%) rotate(6deg)}
+      100%{left:6%;transform:translateY(-50%) rotate(-6deg)}
     }
-
-    .stops{
-      position:relative;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width:860px){ .stops{grid-template-columns:1fr;} }
-
+    .stops{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:860px){.stops{grid-template-columns:1fr}}
     .stop{
       position:relative;
       border:1px solid rgba(255,255,255,.08);
@@ -274,13 +256,7 @@
       padding:14px;
       min-height:86px;
     }
-    .stop .title{
-      font-weight:800;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      margin-bottom:6px;
-    }
+    .stop .title{font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:6px}
     .pin{
       width:10px;height:10px;border-radius:50%;
       background:linear-gradient(135deg,var(--accent),var(--accent2));
@@ -289,12 +265,12 @@
     }
     .stop p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
 
-    /* ===== Boarding Pass (vrai billet) ===== */
-    .boarding { position: relative; overflow: hidden; }
+    /* Boarding pass (vrai billet) */
+    .boarding{position:relative;overflow:hidden}
     .pass{
-      position: relative;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.10);
+      position:relative;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.10);
       background:
         radial-gradient(900px 360px at 12% 10%, rgba(124,77,255,.18), transparent 55%),
         radial-gradient(700px 320px at 88% 35%, rgba(255,77,109,.15), transparent 55%),
@@ -303,7 +279,7 @@
     }
     .pass::before{
       content:"";
-      position:absolute; inset:-30px;
+      position:absolute;inset:-30px;
       background:
         repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 18px),
         radial-gradient(circle at 30% 20%, rgba(255,255,255,.06), transparent 40%),
@@ -313,289 +289,218 @@
       transform: rotate(-1deg);
     }
     .passTop{
-      position: relative;
-      padding: 18px 18px 14px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 14px;
+      position:relative;
+      padding:18px 18px 14px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
     }
-    .passBrand{display:flex;flex-direction:column;gap:4px;}
+    .passBrand{display:flex;flex-direction:column;gap:4px}
     .passBrand .airline{
-      font-weight: 900;
-      letter-spacing: .6px;
-      text-transform: uppercase;
-      font-size: 12px;
-      color: var(--muted);
+      font-weight:900;letter-spacing:.6px;text-transform:uppercase;
+      font-size:12px;color:var(--muted);
     }
-    .passBrand .title{font-weight: 900;font-size: 18px;}
-    .passBadges{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
+    .passBrand .title{font-weight:900;font-size:18px}
+    .passBadges{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .badgeSoft{
       border:1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.18);
       color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      white-space: nowrap;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      white-space:nowrap;
     }
     .passMid{
-      position: relative;
-      padding: 0 18px 16px;
+      position:relative;
+      padding:0 18px 16px;
       display:grid;
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns:1fr auto 1fr;
       align-items:center;
-      gap: 12px;
+      gap:12px;
     }
-    .airport{display:flex;flex-direction:column;gap:6px;}
-    .airport .code{font-weight: 1000;letter-spacing: .8px;font-size: 34px;line-height: 1;}
-    .airport .city{color: var(--muted);font-size: 13px;}
-    .routeLine{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap: 6px;
-      min-width: 170px;
-    }
-    .routeLine .dashed{
-      width: 170px;
-      border-top: 2px dashed rgba(255,255,255,.18);
-      position: relative;
-    }
+    .airport{display:flex;flex-direction:column;gap:6px}
+    .airport .code{font-weight:1000;letter-spacing:.8px;font-size:34px;line-height:1}
+    .airport .city{color:var(--muted);font-size:13px}
+    .routeLine{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:170px}
+    .routeLine .dashed{width:170px;border-top:2px dashed rgba(255,255,255,.18)}
     .routeLine .plane{
-      font-size: 18px;
+      font-size:18px;
       filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
       animation: planeMove 5.8s infinite ease-in-out;
     }
     @keyframes planeMove{
-      0% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
-      50% { transform: translateX(18px) rotate(6deg); opacity:1; }
-      100% { transform: translateX(-18px) rotate(-6deg); opacity:.85; }
+      0%{transform:translateX(-18px) rotate(-6deg);opacity:.85}
+      50%{transform:translateX(18px) rotate(6deg);opacity:1}
+      100%{transform:translateX(-18px) rotate(-6deg);opacity:.85}
     }
-    .routeLine .subline{color: var(--muted);font-size: 12px;text-align:center;}
+    .routeLine .subline{color:var(--muted);font-size:12px;text-align:center}
     .passTear{
-      position: relative;
-      height: 1px;
-      margin: 0 18px;
-      border-top: 1px dashed rgba(255,255,255,.18);
+      position:relative;height:1px;margin:0 18px;
+      border-top:1px dashed rgba(255,255,255,.18);
     }
-    .passTear::before,
-    .passTear::after{
+    .passTear::before,.passTear::after{
       content:"";
-      position:absolute;
-      top: -10px;
-      width: 18px; height: 18px;
-      border-radius: 999px;
-      background: var(--bg);
-      border: 1px solid rgba(255,255,255,.10);
+      position:absolute;top:-10px;
+      width:18px;height:18px;border-radius:999px;
+      background:var(--bg);
+      border:1px solid rgba(255,255,255,.10);
     }
-    .passTear::before{ left: -10px; }
-    .passTear::after{ right: -10px; }
-
+    .passTear::before{left:-10px}
+    .passTear::after{right:-10px}
     .passBottom{
-      position: relative;
-      padding: 14px 18px 18px;
+      position:relative;
+      padding:14px 18px 18px;
       display:grid;
-      grid-template-columns: 1.2fr 1fr 1fr 1fr;
-      gap: 12px;
+      grid-template-columns:1.2fr 1fr 1fr 1fr;
+      gap:12px;
     }
     @media(max-width:860px){
-      .passMid{ grid-template-columns: 1fr; }
-      .routeLine{ min-width: unset; }
-      .routeLine .dashed{ width: 100%; }
-      .passBottom{ grid-template-columns: 1fr 1fr; }
+      .passMid{grid-template-columns:1fr}
+      .routeLine{min-width:unset}
+      .routeLine .dashed{width:100%}
+      .passBottom{grid-template-columns:1fr 1fr}
     }
     .field{
       border:1px solid rgba(255,255,255,.08);
       background: rgba(0,0,0,.18);
-      border-radius: 14px;
-      padding: 10px 12px;
+      border-radius:14px;
+      padding:10px 12px;
     }
     .field .label{
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: .6px;
+      color:var(--muted);
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.6px;
     }
-    .field .value{
-      margin-top: 6px;
-      font-weight: 800;
-      font-size: 14px;
-    }
+    .field .value{margin-top:6px;font-weight:800;font-size:14px}
     .qrMock{
-      position: relative;
       border:1px solid rgba(255,255,255,.08);
       background: rgba(0,0,0,.18);
-      border-radius: 14px;
-      padding: 10px;
+      border-radius:14px;
+      padding:10px;
       display:flex;
       flex-direction:column;
       gap:8px;
     }
     .qrGrid{
-      width: 100%;
-      height: 64px;
-      border-radius: 10px;
+      width:100%;
+      height:64px;
+      border-radius:10px;
       background:
         repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 2px, transparent 2px 6px),
         repeating-linear-gradient(0deg, rgba(255,255,255,.10) 0 2px, transparent 2px 6px);
-      opacity: .55;
+      opacity:.55;
     }
-    .passActions{
-      margin-top: 12px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
+    .passActions{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .smallBtn{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 14px;
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
       cursor:pointer;
-      font-size: 14px;
+      font-size:14px;
     }
-    .smallBtn:active{ transform: translateY(1px); }
+    .smallBtn:active{transform:translateY(1px)}
 
     @media print {
-      body { background: #fff !important; color:#000 !important; }
-      .wrap { max-width: none; padding: 0; }
-      .hero, .grid, .card:not(.boarding) { display:none !important; }
-      .boarding { border:none !important; box-shadow:none !important; }
-      .pass { box-shadow:none !important; }
+      body{background:#fff !important;color:#000 !important}
+      .wrap{max-width:none;padding:0}
+      .hero,.grid,.card:not(.boarding){display:none !important}
+      .boarding{border:none !important;box-shadow:none !important}
+      .pass{box-shadow:none !important}
     }
-    /* Fix clic Jukebox (au cas où un calque recouvre) */
-.jukebox, .track { position: relative; z-index: 5; }
-.track .listen { position: relative; z-index: 6; pointer-events: auto; }
 
-  <!-- JUKEBOX -->
-<section class="card">
-  <h2>Jukebox</h2>
-  <p class="subtitle">Trois morceaux. Trois humeurs. Trois façons de dire “toi”.</p>
+    /* ===== BANDE ORIGINALE (Option B) ===== */
+    .cinema{position:relative;overflow:hidden}
+    .cinema-screen{
+      position:relative;
+      padding:20px;
+      border-radius:18px;
+      background:
+        radial-gradient(900px 400px at 50% 20%, rgba(255,77,109,.15), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .film-grain{
+      position:absolute;inset:-40px;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 3px);
+      opacity:.15;
+      pointer-events:none;
+    }
+    .tracklist{position:relative;display:grid;gap:14px;z-index:1}
+    .track-card{
+      padding:16px;border-radius:16px;
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+    .track-left{display:flex;flex-direction:column;gap:4px}
+    .track-title{font-weight:900;font-size:16px}
+    .track-mood{color:var(--muted);font-size:13px;font-style:italic}
+    .play-btn{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+      position:relative;
+      z-index:2;
+      pointer-events:auto;
+    }
+    .play-btn:hover{background: rgba(255,77,109,.15); transform: translateY(-1px)}
+    .play-btn:active{transform: translateY(1px)}
+    .final-line{
+      position:relative;
+      margin-top:18px;
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+      font-style:italic;
+      z-index:1;
+    }
+    @media (max-width:700px){
+      .track-card{flex-direction:column;align-items:flex-start}
+      .play-btn{width:100%;justify-content:center}
+    }
 
-  <div class="jukebox">
-    <div class="track">
-      <div>
-        <div class="name">1000 Mesures</div>
-        <div class="meta">Le morceau “peau à peau”.</div>
-      </div>
-      <a class="listen" href="https://youtu.be/HpU8aPbxuUE?si=GWbrN6sJ6btbdXRT" target="_blank" rel="noopener">
-        Écouter
-      </a>
-    </div>
+    /* fondu de fin */
+    .fade-out{
+      margin-top:22px;
+      height:60px;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,.55));
+      border-radius:18px;
+    }
+    .footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      opacity:.9;
+      line-height:1.55;
+    }
+  </style>
+</head>
 
-    <div class="track">
-      <div>
-        <div class="name">Je ne sais pas danser</div>
-        <div class="meta">Le morceau “vivant”.</div>
-      </div>
-      <a class="listen" href="https://youtu.be/tGVXzEP_etw?si=VxNZm3moTRjpCe6h" target="_blank" rel="noopener">
-        Écouter
-      </a>
-    </div>
-
-    <div class="track">
-      <div>
-        <div class="name">I’m Kissing You</div>
-        <div class="meta">Le morceau “cinéma”.</div>
-      </div>
-      <a class="listen" href="https://youtu.be/RMg8fnRG5zI?si=7YilFlzz_6XQBjWZ" target="_blank" rel="noopener">
-        Écouter
-      </a>
-    </div>
-  </div>
-    /* ===== SCÈNE DE CINÉMA ===== */
-.cinema {
-  position: relative;
-  overflow: hidden;
-}
-
-.cinema-screen {
-  position: relative;
-  padding: 20px;
-  border-radius: 18px;
-  background:
-    radial-gradient(900px 400px at 50% 20%, rgba(255,77,109,.15), transparent 60%),
-    linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55));
-  border: 1px solid rgba(255,255,255,.08);
-}
-
-.film-grain {
-  position: absolute;
-  inset: -40px;
-  background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,.04) 0 1px,
-      transparent 1px 3px
-    );
-  opacity: .15;
-  pointer-events: none;
-}
-
-.tracklist {
-  position: relative;
-  display: grid;
-  gap: 14px;
-  z-index: 1;
-}
-
-.track-card {
-  padding: 16px;
-  border-radius: 16px;
-  background: rgba(0,0,0,.35);
-  border: 1px solid rgba(255,255,255,.10);
-  box-shadow: 0 12px 30px rgba(0,0,0,.35);
-}
-
-.track-title {
-  font-weight: 800;
-  font-size: 16px;
-}
-
-.track-mood {
-  margin-top: 4px;
-  font-size: 13px;
-  color: var(--muted);
-  font-style: italic;
-}
-
-.play-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.06);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 13px;
-}
-
-.play-btn:hover {
-  background: rgba(255,77,109,.15);
-}
-
-.final-line {
-  position: relative;
-  margin-top: 18px;
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-  font-style: italic;
-}
-
-</section>
+<body>
+  <div class="wrap reveal">
 
     <!-- HERO -->
     <section class="hero">
       <h1>Luna</h1>
-
       <div class="sub">De quoi que soient faites nos âmes, la sienne et la mienne sont pareilles.</div>
-
-      <!-- Voix off (ciné) -->
       <p class="intro-quote">Refuser d’aimer par peur de souffrir, c’est déjà souffrir par refus de vivre.</p>
 
       <div class="chiprow">
@@ -720,8 +625,7 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
 
         <div class="planeRow">
           <div class="dotted"></div>
-          <div class="planeMap">✈️</
-            /div>
+          <div class="planeMap">✈️</div>
         </div>
 
         <div class="stops">
@@ -821,39 +725,46 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
       </div>
     </section>
 
-   <!-- SCÈNE DE CINÉMA -->
-<section class="card cinema">
-  <h2>Bande originale</h2>
-  <p class="subtitle">Trois morceaux. Une histoire. La nôtre.</p>
+    <!-- BANDE ORIGINALE (SCÈNE CINÉ) -->
+    <section class="card cinema">
+      <h2>Bande originale</h2>
+      <p class="subtitle">Trois morceaux. Une histoire. La nôtre.</p>
 
-  <div class="cinema-screen">
-    <div class="film-grain"></div>
+      <div class="cinema-screen">
+        <div class="film-grain"></div>
 
-    <div class="tracklist">
-      <div class="track-card">
-        <div class="track-title">1000 Mesures</div>
-        <div class="track-mood">Peau à peau. Lent. Intime.</div>
-        <a href="https://youtu.be/HpU8aPbxuUE?si=GWbrN6sJ6btbdXRT" target="_blank" class="play-btn">▶ Écouter</a>
+        <div class="tracklist">
+          <div class="track-card">
+            <div class="track-left">
+              <div class="track-title">1000 Mesures</div>
+              <div class="track-mood">Peau à peau. Lent. Intime.</div>
+            </div>
+            <a class="play-btn" href="https://youtu.be/HpU8aPbxuUE?si=GWbrN6sJ6btbdXRT" target="_blank" rel="noopener">▶ Écouter</a>
+          </div>
+
+          <div class="track-card">
+            <div class="track-left">
+              <div class="track-title">Je ne sais pas danser</div>
+              <div class="track-mood">Maladroit. Vivant. Vrai.</div>
+            </div>
+            <a class="play-btn" href="https://youtu.be/tGVXzEP_etw?si=VxNZm3moTRjpCe6h" target="_blank" rel="noopener">▶ Écouter</a>
+          </div>
+
+          <div class="track-card">
+            <div class="track-left">
+              <div class="track-title">I’m Kissing You</div>
+              <div class="track-mood">Cinéma pur. Regards. Silences.</div>
+            </div>
+            <a class="play-btn" href="https://youtu.be/RMg8fnRG5zI?si=7YilFlzz_6XQBjWZ" target="_blank" rel="noopener">▶ Écouter</a>
+          </div>
+        </div>
+
+        <div class="final-line">
+          <span>🎞️ Fin de la scène.</span><br/>
+          <span>Mais pas de l’histoire.</span>
+        </div>
       </div>
-
-      <div class="track-card">
-        <div class="track-title">Je ne sais pas danser</div>
-        <div class="track-mood">Maladroit. Vivant. Vrai.</div>
-        <a href="https://youtu.be/tGVXzEP_etw?si=VxNZm3moTRjpCe6h" target="_blank" class="play-btn">▶ Écouter</a>
-      </div>
-
-      <div class="track-card">
-        <div class="track-title">I’m Kissing You</div>
-        <div class="track-mood">Cinéma pur. Regards. Silences.</div>
-        <a href="https://youtu.be/RMg8fnRG5zI?si=7YilFlzz_6XQBjWZ" target="_blank" class="play-btn">▶ Écouter</a>
-      </div>
-    </div>
-
-    <div class="final-line">
-      <span>🎞️ Fin de la scène.</span><br/>
-      <span>Mais pas de l’histoire.</span>
-    </div>
-  </div>
+    </section>
 
     <div class="fade-out"></div>
 
@@ -876,7 +787,6 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
       "Avec toi, le silence ne fait pas peur.",
       "Et quand on rit… on rit jusqu’à en avoir mal aux joues.",
       "Bonne Saint-Valentin, Luna.",
-      // CINÉ (final moment)
       "Je me sens chez moi quand tu es là."
     ];
 
@@ -890,7 +800,6 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
     function showLine(text){
       quote.textContent = text;
 
-      // si c’est la phrase "finale", le coeur passe en slowPulse
       if (text.includes("chez moi")) {
         heart.classList.add("final");
       } else {
@@ -925,30 +834,23 @@ Rien d’extraordinaire. Tout d’essentiel.</div>
       "Petites escales",
       "Toujours nous"
     ];
-
     let stepIndex = 0;
 
     function setNextStop(){
       stepIndex = (stepIndex + 1) % steps.length;
-
       const dest = steps[stepIndex];
+
       const destinationLine = document.getElementById("destinationLine");
       const mapBadge = document.getElementById("mapBadge");
 
-      // Billet
       destinationLine.textContent = "Destination : " + (dest === "Toujours nous" ? "NOUS" : dest);
-
-      // Carte
       mapBadge.textContent = "✈️ Prochaine étape : " + dest;
 
-      // petit effet ciné sur le badge
       mapBadge.animate(
         [{transform:"translateY(2px)", opacity:0.75},{transform:"translateY(0)", opacity:1}],
         {duration:240, easing:"ease-out"}
       );
     }
-
-    // rendre la fonction accessible au onclick
     window.setNextStop = setNextStop;
   </script>
 </body>
