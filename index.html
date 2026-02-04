@@ -14,7 +14,6 @@
       --accent:#ff4d6d;
       --accent2:#7c4dff;
       --line:#2a2a3a;
-      --glass: rgba(255,255,255,.06);
     }
     *{box-sizing:border-box}
     body{
@@ -22,24 +21,37 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       background:
-        radial-gradient(1200px 700px at 20% 10%, rgba(124,77,255,.18), transparent 60%),
-        radial-gradient(900px 600px at 80% 30%, rgba(255,77,109,.15), transparent 55%),
+        radial-gradient(1200px 700px at 20% 10%, rgba(124,77,255,.20), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(255,77,109,.18), transparent 55%),
         var(--bg);
       min-height:100vh;
     }
     .wrap{max-width:920px;margin:0 auto;padding:28px 18px 80px}
 
     .hero{
-      padding:38px 22px 26px;
+      padding:38px 18px 24px;
       border:1px solid rgba(255,255,255,.06);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       border-radius:22px;
       box-shadow: 0 20px 60px rgba(0,0,0,.35);
     }
     h1{margin:0;font-size: clamp(34px, 6vw, 64px);letter-spacing:.5px;line-height:1}
-    .sub{margin-top:14px;font-size: clamp(16px, 2.5vw, 20px);color:var(--muted);line-height:1.45}
+    .sub{
+      margin-top:14px;
+      font-size: clamp(16px, 2.5vw, 20px);
+      color:var(--muted);
+      min-height: 40px;
+      line-height:1.45;
+    }
     .chiprow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-    .chip{border:1px solid rgba(255,255,255,.10);background: rgba(18,18,26,.55);padding:8px 12px;border-radius:999px;color:var(--muted);font-size:13px}
+    .chip{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(18,18,26,.55);
+      padding:8px 12px;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+    }
 
     .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:18px}
     @media (max-width:860px){.grid{grid-template-columns:1fr}}
@@ -50,10 +62,9 @@
       border-radius:22px;
       padding:18px;
       box-shadow: 0 10px 35px rgba(0,0,0,.25);
-      margin-top:18px;
     }
-    .grid .card{margin-top:0;}
-    .card h2{margin:0 0 8px;font-size:18px;letter-spacing:.2px}
+    .card + .card{margin-top:18px;}
+    .card h2{margin:0 0 10px;font-size:18px;letter-spacing:.2px}
     .subtitle{color:var(--muted);font-size:13px;margin:0 0 12px;line-height:1.5}
 
     /* Timeline */
@@ -73,25 +84,34 @@
     .step .t{font-weight:700}
     .step .d{color:var(--muted);margin-top:4px;font-size:14px;line-height:1.45;white-space:pre-line}
 
-    /* Heart + compliments */
+    /* Heart (poum poum + rose/violet) */
     .heartWrap{display:flex;flex-direction:column;align-items:center;gap:10px}
+    .heartHalo{
+      width:164px;height:164px;border-radius:50%;
+      display:grid;place-items:center;
+      background: radial-gradient(circle at 50% 45%, rgba(255,77,109,.18), transparent 55%),
+                  radial-gradient(circle at 40% 60%, rgba(124,77,255,.14), transparent 60%);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    }
     .heart{
       width:140px;height:140px;
-      filter: drop-shadow(0 14px 25px rgba(255,77,109,.20));
-      cursor:pointer; user-select:none;
+      filter: drop-shadow(0 14px 25px rgba(255,77,109,.22));
+      cursor:pointer;
+      user-select:none;
       transform-origin:center;
-      animation: beat 1.25s infinite ease-in-out;
+      animation: beat 1.15s infinite ease-in-out;
     }
     @keyframes beat{
       0%,100%{transform:scale(1)}
-      20%{transform:scale(1.06)}
-      40%{transform:scale(1)}
-      60%{transform:scale(1.08)}
-      80%{transform:scale(1)}
+      18%{transform:scale(1.07)}
+      36%{transform:scale(1)}
+      58%{transform:scale(1.10)}
+      78%{transform:scale(1)}
     }
     .pulseHint{color:var(--muted);font-size:13px;text-align:center}
     .quote{
-      margin-top:8px;
+      margin-top:6px;
       padding:12px 14px;
       border-radius:16px;
       border:1px solid rgba(255,255,255,.08);
@@ -110,7 +130,6 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.04);
       color:var(--text);
-      text-decoration:none;
       font-size:14px;
       cursor:pointer;
       user-select:none;
@@ -129,25 +148,45 @@
       line-height:1.45;
     }
 
-    /* Travel map */
+    /* Jukebox */
+    .jukebox{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+    .track{
+      display:flex;justify-content:space-between;align-items:center;gap:10px;
+      padding:12px 14px;border-radius:16px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+    }
+    .track .name{font-weight:700}
+    .track .meta{color:var(--muted);font-size:13px}
+    .track a{
+      color:var(--text);
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      padding:8px 10px;border-radius:12px;
+      font-size:13px;
+      white-space:nowrap;
+    }
+    .track a:hover{opacity:.9}
+
+    /* Travel map (carte + avion + arrêts) */
     .map{
       position:relative;
       overflow:hidden;
       border-radius:18px;
       border:1px solid rgba(255,255,255,.08);
       background:
-        radial-gradient(900px 420px at 20% 10%, rgba(124,77,255,.12), transparent 55%),
-        radial-gradient(700px 380px at 85% 35%, rgba(255,77,109,.10), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.12));
-      padding:18px;
+        radial-gradient(900px 420px at 18% 10%, rgba(124,77,255,.14), transparent 58%),
+        radial-gradient(700px 380px at 86% 40%, rgba(255,77,109,.12), transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.16));
+      padding:16px;
     }
     .map::before{
-      /* effet "carte" léger */
       content:"";
       position:absolute; inset:-40px;
       background:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.03) 0 1px, transparent 1px 22px),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.02) 0 1px, transparent 1px 28px);
+        repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 22px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 28px);
       opacity:.45;
       transform: rotate(-2deg);
       pointer-events:none;
@@ -158,7 +197,7 @@
       justify-content:space-between;
       align-items:flex-start;
       gap:12px;
-      margin-bottom:12px;
+      margin-bottom:10px;
     }
     .badge{
       position:relative;
@@ -173,21 +212,48 @@
       font-size:12px;
       white-space:nowrap;
     }
-    .route{
+
+    .planeRow{
+      position:relative;
+      margin:12px 0 12px;
+      height:46px;
+    }
+    .dotted{
+      position:absolute;
+      left:0; right:0; top:50%;
+      transform: translateY(-50%);
+      border-top:2px dashed rgba(255,255,255,.18);
+    }
+    .plane{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      left: 6%;
+      font-size:22px;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));
+      animation: fly 6.5s infinite ease-in-out;
+    }
+    @keyframes fly{
+      0%{left:6%; transform: translateY(-50%) rotate(-6deg)}
+      50%{left:78%; transform: translateY(-65%) rotate(6deg)}
+      100%{left:6%; transform: translateY(-50%) rotate(-6deg)}
+    }
+
+    .stops{
       position:relative;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap:12px;
     }
-    @media (max-width:860px){ .route{grid-template-columns:1fr;} }
+    @media (max-width:860px){ .stops{grid-template-columns:1fr;} }
 
     .stop{
       position:relative;
       border:1px solid rgba(255,255,255,.08);
       background: rgba(0,0,0,.18);
       border-radius:16px;
-      padding:14px 14px 14px 14px;
-      min-height:84px;
+      padding:14px;
+      min-height:86px;
     }
     .stop .title{
       font-weight:800;
@@ -203,33 +269,6 @@
       flex:0 0 auto;
     }
     .stop p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
-
-    .planeRow{
-      position:relative;
-      margin:14px 0 6px;
-      height:44px;
-    }
-    .dotted{
-      position:absolute;
-      left:0; right:0; top:50%;
-      transform: translateY(-50%);
-      border-top:2px dashed rgba(255,255,255,.16);
-    }
-    .plane{
-      position:absolute;
-      top:50%;
-      transform: translateY(-50%);
-      left: 8%;
-      font-size:22px;
-      filter: drop-shadow(0 8px 16px rgba(0,0,0,.35));
-      animation: fly 6.5s infinite ease-in-out;
-    }
-    @keyframes fly{
-      0%{left:6%; transform: translateY(-50%) rotate(-6deg)}
-      50%{left:74%; transform: translateY(-65%) rotate(6deg)}
-      100%{left:6%; transform: translateY(-50%) rotate(-6deg)}
-    }
-
     .footer{
       margin-top:18px;
       color:var(--muted);
@@ -244,7 +283,8 @@
 <body>
   <div class="wrap">
 
-    <div class="hero">
+    <!-- HERO -->
+    <section class="hero">
       <h1>Luna</h1>
       <div class="sub">De quoi que soient faites nos âmes, la sienne et la mienne sont pareilles.</div>
       <div class="chiprow">
@@ -254,59 +294,78 @@
         <div class="chip">petits dates</div>
         <div class="chip">fait maison</div>
       </div>
-    </div>
+    </section>
 
+    <!-- GRID -->
     <div class="grid">
-      <div class="card">
+      <section class="card">
         <h2>Notre chronologie</h2>
         <div class="timeline">
           <div class="step">
             <div class="t">13 mai 2018 — Rencontre</div>
-            <div class="d">On s’est rencontrés un 13 mai.\nUn jour normal, qui ne l’est plus jamais vraiment après.</div>
+            <div class="d">On s’est rencontrés un 13 mai.
+Un jour normal, qui ne l’est plus jamais vraiment après.</div>
           </div>
+
           <div class="step">
             <div class="t">Premier rencard — 13 heures</div>
-            <div class="d">Treize heures.\nComme si le temps avait décidé de ne pas intervenir.</div>
+            <div class="d">Treize heures.
+Comme si le temps avait décidé de ne pas intervenir.</div>
           </div>
+
           <div class="step">
-            <div class="t">Le “rien ne va se passer”</div>
-            <div class="d">Tu ne voulais pas de sérieux.\nMoi, je te voulais toi.\nAlors je t’ai piquée à l’ego.\n(J’avais raison.)</div>
+            <div class="t">Le “rien ne va se passer” (mensonge stratégique)</div>
+            <div class="d">Tu ne voulais pas de sérieux.
+Moi, je te voulais.
+Alors je t’ai piquée à l’ego : “il ne se passera rien entre nous”.
+(En espérant que ta fierté te donnerait envie de me revoir. J’avais raison.)</div>
           </div>
+
           <div class="step">
             <div class="t">Notre aménagement</div>
-            <div class="d">Le moment où “nous” est devenu un endroit.\nUn espace. Une maison. Une réalité.</div>
+            <div class="d">Le moment où “nous” est devenu un endroit.
+Un espace. Une maison. Une réalité.</div>
           </div>
+
           <div class="step">
             <div class="t">Le Woodstower</div>
-            <div class="d">Un souvenir qui reste collé à la peau.</div>
+            <div class="d">Un de ces souvenirs qui ont une odeur, une couleur,
+et qui restent collés à la peau.</div>
           </div>
+
           <div class="step">
             <div class="t">Nos vacances à Paris</div>
-            <div class="d">Les rues, les regards, les pauses.\nEt cette impression que tout était exactement à sa place.</div>
+            <div class="d">Les rues, les regards, les pauses.
+Et cette impression que tout était exactement à sa place.</div>
           </div>
+
           <div class="step">
             <div class="t">Nos petits dates</div>
-            <div class="d">Librairie, Foch, restaurants, soirées ciné…\nTout ce qui a l’air simple,\nmais qui construit une vie.</div>
+            <div class="d">Librairie, Foch, restaurants, soirées ciné…
+Rien d’extraordinaire. Tout d’essentiel.</div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="card">
+      <!-- HEART -->
+      <section class="card">
         <h2>Le bouton à tendresse</h2>
         <div class="heartWrap">
-          <svg class="heart" id="heart" viewBox="0 0 512 512" aria-label="Coeur">
-            <defs>
-              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#ff4d6d"/>
-                <stop offset="1" stop-color="#7c4dff"/>
-              </linearGradient>
-            </defs>
-            <path fill="url(#g)"
-              d="M256 464s-24-14-48-28C120 384 48 320 48 224
-                 48 152 104 96 176 96c40 0 72 16 96 48
-                 24-32 56-48 96-48c72 0 128 56 128 128
-                 0 96-72 160-160 212c-24 14-48 28-80 28z"/>
-          </svg>
+          <div class="heartHalo">
+            <svg class="heart" id="heart" viewBox="0 0 512 512" aria-label="Coeur">
+              <defs>
+                <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ff4d6d"/>
+                  <stop offset="1" stop-color="#7c4dff"/>
+                </linearGradient>
+              </defs>
+              <path fill="url(#g)"
+                d="M256 464s-24-14-48-28C120 384 48 320 48 224
+                   48 152 104 96 176 96c40 0 72 16 96 48
+                   24-32 56-48 96-48c72 0 128 56 128 128
+                   0 96-72 160-160 212c-24 14-48 28-80 28z"/>
+            </svg>
+          </div>
 
           <div class="pulseHint">Clique sur le cœur. Ou sur “Encore”.</div>
           <div class="quote" id="quote"></div>
@@ -316,30 +375,34 @@
             <button class="btn" id="random">Surprise</button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 
-    <div class="card">
+    <!-- PHRASES CULTE -->
+    <section class="card">
       <h2>Nos phrases culte</h2>
-      <p class="subtitle">Celles qui n’ont de sens que pour nous. (Tu peux les modifier quand tu veux.)</p>
+      <p class="subtitle">Celles qui n’ont de sens que pour nous.</p>
       <ul class="phrases">
-        <li>« On fait simple. »</li>
+        <li>« On peut rester en silence, sans angoisser. »</li>
+        <li>« On rit jusqu’à avoir mal aux joues. »</li>
         <li>« Viens, on rentre. »</li>
-        <li>« T’as mangé ? »</li>
         <li>« Encore cinq minutes. »</li>
-        <li>« C’est notre endroit. »</li>
+        <li>« T’as mangé ? »</li>
       </ul>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>Carte de voyage</h2>
+    <!-- TRAVEL MAP -->
+    <section class="card">
+      <h2>Notre voyage</h2>
       <p class="subtitle">Nos prochaines étapes. Pas un planning : une direction.</p>
 
       <div class="map">
         <div class="mapHeader">
           <div style="position:relative; z-index:1;">
             <div style="font-weight:800; font-size:16px;">Itinéraire : nous</div>
-            <div style="color:var(--muted); font-size:13px; margin-top:4px;">Avec des escales, du rire, et des dodos sur le canapé.</div>
+            <div style="color:var(--muted); font-size:13px; margin-top:4px;">
+              Avec des escales, du rire, et des dodos sur le canapé.
+            </div>
           </div>
           <div class="badge">✈️ Prochaine étape : nouvelle maison</div>
         </div>
@@ -349,7 +412,7 @@
           <div class="plane">✈️</div>
         </div>
 
-        <div class="route">
+        <div class="stops">
           <div class="stop">
             <div class="title"><span class="pin"></span>Nouvelle maison</div>
             <p>Un lieu à nous. Du calme. Des plantes. Des silences partagés.</p>
@@ -367,11 +430,44 @@
 
           <div class="stop">
             <div class="title"><span class="pin"></span>Petites escales</div>
-            <p>Librairie, Foch, resto, ciné… nos micro-victoires du quotidien.</p>
+            <p>Librairie / Foch / restaurants / soirées ciné.  
+            Des petits dates qui font une grande vie.</p>
           </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- JUKEBOX -->
+    <section class="card">
+      <h2>Jukebox</h2>
+      <p class="subtitle">Trois morceaux. Trois humeurs. Trois façons de dire “toi”.</p>
+
+      <div class="jukebox">
+        <div class="track">
+          <div>
+            <div class="name">Mon autre</div>
+            <div class="meta">Le morceau “évidence”.</div>
+          </div>
+          <a href="#" onclick="alert('Ajoute ici ton lien Spotify/YouTube :)'); return false;">Écouter</a>
+        </div>
+
+        <div class="track">
+          <div>
+            <div class="name">I’m Kissing You</div>
+            <div class="meta">Le morceau “cinéma”.</div>
+          </div>
+          <a href="#" onclick="alert('Ajoute ici ton lien Spotify/YouTube :)'); return false;">Écouter</a>
+        </div>
+
+        <div class="track">
+          <div>
+            <div class="name">1000 mesures</div>
+            <div class="meta">Le morceau “peau à peau”.</div>
+          </div>
+          <a href="#" onclick="alert('Ajoute ici ton lien Spotify/YouTube :)'); return false;">Écouter</a>
+        </div>
+      </div>
+    </section>
 
     <div class="footer">
       Grandir à tes côtés est la plus belle aventure que la vie puisse offrir.
@@ -397,12 +493,13 @@
     const heart = document.getElementById("heart");
     const again = document.getElementById("again");
     const random = document.getElementById("random");
+
     let idx = 0;
 
     function showLine(text){
       quote.textContent = text;
       quote.animate(
-        [{transform:"scale(1)", opacity:0.85},{transform:"scale(1.02)", opacity:1},{transform:"scale(1)", opacity:1}],
+        [{transform:"translateY(2px)", opacity:0.85},{transform:"translateY(0)", opacity:1}],
         {duration:220, easing:"ease-out"}
       );
     }
